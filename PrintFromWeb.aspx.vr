@@ -1,0 +1,53 @@
+﻿BegClass PrintFromWeb Partial(*Yes) Access(*Public) Extends(System.Web.UI.Page)
+    //
+    // Print to PDF.
+    //
+    BegSr Button1_Click Access(*Private) Event(*This.Button1.Click)
+        DclSrParm sender Type(*Object)
+        DclSrParm e Type(System.EventArgs)
+
+        DclFld report Type(CustomerReport) 
+
+        DclFld WebRoot Type(*String) 
+        DclFld PDFFolder Type(*String) 
+        DclFld PDFFileName Type(*String) 
+        DclFld PrinterName Type(*String) 
+
+        /*
+         | When printing to the MS native PDF driver, the printer name
+         | must be:
+         |      "Microsoft Print to PDF"
+         | Use MS Word to save a sample document with this driver to ensure
+         | it is available. It should be present for Windows 10 or Windows 
+         | Server 2016. It is not present, not is it available, for previous
+         | Windows or Windows Server versions.
+         */
+        DclConst MS_PDF_DRIVER Value('Microsoft Print to PDF')
+
+        WebRoot = Server.MapPath('\')
+        // The PDFFolder is relative to the root.
+        PDFFolder = 'pdf-files'
+        PDFFileName = textboxPDFFileName.Text.Trim()
+        PrinterName = MS_PDF_DRIVER
+        report = *New CustomerReport(WebRoot, PDFFolder, PDFFileName, PrinterName) 
+        report.Print()                         
+
+        Response.Redirect(report.VirtualPathToPDF)		
+    EndSr
+
+    //
+    // Print to printer.
+    //
+    BegSr Button2_Click Access(*Private) Event(*This.Button2.Click)
+        DclSrParm sender Type(*Object)
+        DclSrParm e Type(System.EventArgs)
+
+        DclFld report Type(CustomerReport) 
+        DclFld PrinterName Type(*String) 
+
+        PrinterName = textboxPrinterName.Text.Trim() 
+        report = *New CustomerReport(PrinterName)
+        
+        report.Print()                                		
+    EndSr
+EndClass

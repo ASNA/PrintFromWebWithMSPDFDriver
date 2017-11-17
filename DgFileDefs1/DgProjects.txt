@@ -1,0 +1,20 @@
+﻿
+ D A T A G A T E   P R O J E C T S 
+ =================================
+ 
+ DataGate projects allow you to design database and print files, and create 
+ them on a target database.  To design a file, you add a file definition 
+ source file to the project, then use the designer or XML editor to design the
+ file.  When the design is complete, you can create a file in the database
+ with the Create File command.  Your file definition remains in the project's
+ source file, which allows you to create the file on other databases, and use
+ modern source control tools to manage your file definitions.
+ 
+ To begin, right click on the project node in Solution Explorer, and select 
+ the "Add Item" command.  Then select from one  of the available templates for 
+ creating DataGate files from "empty" file definitions.
+ 
+ Alternatively, you can browse for files with DataGate Explorer, and drag-and-
+ drop the files of your choice onto the project node in Solution Explorer.  
+ When you do this, DataGate copies the definition of the file into a new file
+ definition source file which is added to the project.

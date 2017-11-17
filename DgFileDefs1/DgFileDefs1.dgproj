@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="NoOpBuild" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{f4a8aa94-7b96-4ac6-b19e-877551a01f8a}</ProjectGuid>
+    <NoStandardLibraries>true</NoStandardLibraries>
+    <RootNamespace>ASNA.DataGate</RootNamespace>
+    <OutputPath>bin</OutputPath>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <DefaultSource>DG NET Local</DefaultSource>
+    <Name>DgFileDefs1</Name>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'ReBuild'" />
+  <ItemGroup>
+    <DBNameReference Include="DG NET iSeries">
+      <Name>DG NET iSeries</Name>
+    </DBNameReference>
+    <DBNameReference Include="DG NET Local">
+      <Name>DG NET Local</Name>
+    </DBNameReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DgProjects.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CUSTLIST.apd">
+      <SubType>Content</SubType>
+    </Content>
+  </ItemGroup>
+  <Target Name="NoOpBuild" />
+  <Target Name="ReBuild" />
+  <Target Name="Clean" />
+  <Import Project="$(MSBuildBinPath)\Microsoft.Common.targets" />
+</Project>

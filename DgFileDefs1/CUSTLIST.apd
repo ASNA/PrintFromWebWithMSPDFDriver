@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<file name="CUSTLIST" objectId="0" parentId="0" version="0" modification="0" fileType="netPrint" xmlns="http://schema.asna.com/DataGate/File">
+  <text xmlns="http://schema.asna.com/DataGate/DataGateObject"></text>
+  <basesDoc xmlns="http://schema.asna.com/DataGate/DataGateObject">
+    <baseObjects xmlns="http://schema.asna.com/DataGate/BaseObjects" />
+  </basesDoc>
+  <fileCreateAttrDoc>
+    <printCreateAttr checkFormatLevels="false" waitForFile="0" docName="" xmlns="http://schema.asna.com/DataGate/PrintCreateAttr">
+      <printDevAttr paperSize="1" scale="0" copies="0" defaultSource="7" printQuality="0" color="false" collate="false" />
+    </printCreateAttr>
+  </fileCreateAttrDoc>
+  <fileDefDoc>
+    <fileDef fileType="netPrint" codePage="0" fileRecordLength="10" maxKeyLength="0" dupKeys="allowed" selectPath="dynamic" xmlns="http://schema.asna.com/DataGate/FileDef">
+      <versionInfo version="1" release="0" modification="3" update="0" xmlns="http://schema.asna.com/Version" />
+      <defTable>
+        <def name="*FileProps" data="font='Microsoft Sans Serif, 8.25pt' color='ControlText' overflow='-178'" />
+        <def name="*DesignerProps" data="version='8.0.363.0' drawGrid='False' snapToGrid='False'" />
+      </defTable>
+      <format name="Heading" formatID="630C2F9BBEAB03142667F4E65517D9E4D42F830F" zpRep="ascii" biRepMSBF="false" biRepSigned="false" defaultBlank="32" xmlns="http://schema.asna.com/DataGate/Format">
+        <versionInfo version="1" release="0" modification="2" update="0" xmlns="http://schema.asna.com/Version" />
+        <printProperties skipToBefore="127" height="153" endPage="false" startPage="true" />
+        <fields>
+          <field fieldLength="0" location="0" fieldUsage="both" variableLength="false" allowNulls="false" xmlns="http://schema.asna.com/DataGate/Field">
+            <versionInfo version="1" release="0" modification="2" update="0" xmlns="http://schema.asna.com/Version" />
+            <fieldAttr name="Label1" xmlns="http://schema.asna.com/DataGate/FieldTypeAttr">
+              <fieldType>
+                <printField>
+                  <rectangle left="783" top="42" right="1291" bottom="103" />
+                  <classInfo libType="5" clsID="ASNA.DataGate.PrintControls.Label" libName="ASNA.DataGate.PrintControls, Version=1.0.6.0, Culture=neutral, PublicKeyToken=823c0416908174c7" propData="&lt;props Name=&quot;Label1&quot; Alignment=&quot;Center&quot; Underline=&quot;False&quot; Text=&quot;Customer listing&quot; Font=&quot;Microsoft Sans Serif, 14pt&quot; TabIndex=&quot;0&quot; Bold=&quot;False&quot; /&gt;" />
+                </printField>
+              </fieldType>
+            </fieldAttr>
+          </field>
+          <field fieldLength="10" location="0" fieldUsage="both" variableLength="false" allowNulls="false" xmlns="http://schema.asna.com/DataGate/Field">
+            <versionInfo version="1" release="0" modification="2" update="0" xmlns="http://schema.asna.com/Version" />
+            <fieldAttr name="DateTimeField1" xmlns="http://schema.asna.com/DataGate/FieldTypeAttr">
+              <fieldType>
+                <printField>
+                  <rectangle left="1778" top="42" right="1976" bottom="85" />
+                  <classInfo libType="5" clsID="ASNA.DataGate.PrintControls.DateTimeField" libName="ASNA.DataGate.PrintControls, Version=1.0.6.0, Culture=neutral, PublicKeyToken=823c0416908174c7" propData="&lt;props FieldType=&quot;DateField&quot; Name=&quot;DateTimeField1&quot; Alignment=&quot;Left&quot; Value=&quot;02/10/2006 10:00:07&quot; Underline=&quot;False&quot; FieldFormat=&quot;ISO&quot; Text=&quot;DateTimeField1&quot; Font=&quot;Microsoft Sans Serif, 8.25pt&quot; TabIndex=&quot;1&quot; Bold=&quot;False&quot; /&gt;" />
+                  <printData>
+                    <fieldType>
+                      <dateField dateTimeFormat="iso" />
+                    </fieldType>
+                  </printData>
+                </printField>
+              </fieldType>
+            </fieldAttr>
+          </field>
+          <field fieldLength="0" location="10" fieldUsage="both" variableLength="false" allowNulls="false" xmlns="http://schema.asna.com/DataGate/Field">
+            <versionInfo version="1" release="0" modification="2" update="0" xmlns="http://schema.asna.com/Version" />
+            <fieldAttr name="AutoField1" xmlns="http://schema.asna.com/DataGate/FieldTypeAttr">
+              <fieldType>
+                <printField>
+                  <rectangle left="1529" top="42" right="1582" bottom="85" />
+                  <classInfo libType="5" clsID="ASNA.DataGate.PrintControls.AutoField" libName="ASNA.DataGate.PrintControls, Version=1.0.6.0, Culture=neutral, PublicKeyToken=823c0416908174c7" propData="&lt;props Name=&quot;AutoField1&quot; ValueType=&quot;PageNumber&quot; Alignment=&quot;Left&quot; Underline=&quot;False&quot; Text=&quot;AutoField1&quot; TabIndex=&quot;2&quot; Bold=&quot;False&quot; /&gt;" />
+                </printField>
+              </fieldType>
+            </fieldAttr>
+          </field>
+          <field fieldLength="0" location="10" fieldUsage="both" variableLength="false" allowNulls="false" xmlns="http://schema.asna.com/DataGate/Field">
+            <versionInfo version="1" release="0" modification="2" update="0" xmlns="http://schema.asna.com/Version" />
+            <fieldAttr name="AutoField2" xmlns="http://schema.asna.com/DataGate/FieldTypeAttr">
+              <fieldType>
+                <printField>
+                  <rectangle left="1643" top="42" right="1696" bottom="82" />
+                  <classInfo libType="5" clsID="ASNA.DataGate.PrintControls.AutoField" libName="ASNA.DataGate.PrintControls, Version=1.0.6.0, Culture=neutral, PublicKeyToken=823c0416908174c7" propData="&lt;props Name=&quot;AutoField2&quot; ValueType=&quot;PageTotal&quot; Alignment=&quot;Left&quot; Underline=&quot;False&quot; Text=&quot;AutoField2&quot; TabIndex=&quot;3&quot; Bold=&quot;False&quot; /&gt;" />
+                </printField>
+              </fieldType>
+            </fieldAttr>
+          </field>
+        </fields>
+      </format>
+      <format name="Detail" formatID="2686A9E3105C3D6DEFC07560D257C14EA561951F" zpRep="ascii" biRepMSBF="false" biRepSigned="false" defaultBlank="32" xmlns="http://schema.asna.com/DataGate/Format">
+        <versionInfo version="1" release="0" modification="2" update="0" xmlns="http://schema.asna.com/Version" />
+        <printProperties height="50" endPage="false" startPage="false" />
+        <fields>
+          <field fieldLength="40" location="0" fieldUsage="both" variableLength="false" allowNulls="false" xmlns="http://schema.asna.com/DataGate/Field">
+            <versionInfo version="1" release="0" modification="2" update="0" xmlns="http://schema.asna.com/Version" />
+            <fieldAttr name="CustomerName" xmlns="http://schema.asna.com/DataGate/FieldTypeAttr">
+              <fieldType>
+                <printField>
+                  <rectangle left="167" top="11" right="1079" bottom="53" />
+                  <classInfo libType="5" clsID="ASNA.DataGate.PrintControls.CharField" libName="ASNA.DataGate.PrintControls, Version=1.0.6.0, Culture=neutral, PublicKeyToken=823c0416908174c7" propData="&lt;props Name=&quot;CustomerName&quot; Alignment=&quot;Left&quot; Value=&quot;CharField1&quot; Length=&quot;40&quot; Underline=&quot;False&quot; Text=&quot;CharField1&quot; Font=&quot;Microsoft Sans Serif, 8.25pt&quot; TabIndex=&quot;0&quot; Bold=&quot;False&quot; /&gt;" />
+                  <printData>
+                    <fieldType>
+                      <charField byteLength="40" />
+                    </fieldType>
+                  </printData>
+                </printField>
+              </fieldType>
+            </fieldAttr>
+          </field>
+        </fields>
+      </format>
+      <format name="Footer" formatID="B4E19B24004DE594E39B24CCA8B442CAEE36BDC9" zpRep="ascii" biRepMSBF="false" biRepSigned="false" defaultBlank="32" xmlns="http://schema.asna.com/DataGate/Format">
+        <versionInfo version="1" release="0" modification="2" update="0" xmlns="http://schema.asna.com/Version" />
+        <printProperties height="127" endPage="false" startPage="false" />
+        <fields>
+          <field fieldLength="0" location="0" fieldUsage="both" variableLength="false" allowNulls="false" xmlns="http://schema.asna.com/DataGate/Field">
+            <versionInfo version="1" release="0" modification="2" update="0" xmlns="http://schema.asna.com/Version" />
+            <fieldAttr name="Line1" xmlns="http://schema.asna.com/DataGate/FieldTypeAttr">
+              <fieldType>
+                <printField>
+                  <rectangle left="148" top="42" right="2032" bottom="63" />
+                  <classInfo libType="5" clsID="ASNA.DataGate.PrintControls.Line" libName="ASNA.DataGate.PrintControls, Version=1.0.6.0, Culture=neutral, PublicKeyToken=823c0416908174c7" propData="&lt;props Name=&quot;Line1&quot; LineCap=&quot;Round&quot; Orientation=&quot;Horizontal&quot; LineStyle=&quot;Solid&quot; LineColor=&quot;Black&quot; Text=&quot;Line1&quot; TabIndex=&quot;0&quot; /&gt;" />
+                </printField>
+              </fieldType>
+            </fieldAttr>
+          </field>
+        </fields>
+      </format>
+    </fileDef>
+  </fileDefDoc>
+</file>

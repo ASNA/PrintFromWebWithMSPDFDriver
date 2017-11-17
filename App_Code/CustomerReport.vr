@@ -1,0 +1,187 @@
+﻿Using System
+Using System.Text.RegularExpressions
+Using System.IO 
+
+/*
+ | This class shows how to print to Microsoft's native PDF
+ | print driver (which produces a PDF file) or to a real printer.
+ |
+ | When printing to the MS native PDF driver, the printer name
+ | must be:
+ |      "Microsoft Print to PDF"
+ | Use MS Word to save a sample document with this driver to ensure
+ | it is available. It should be present for Windows 10 or Windows 
+ | Server 2016. It is not present, not is it available, for previous
+ | Windows or Windows Server versions.
+ */
+BegClass CustomerReport Access(*Public)
+
+    DclDB Name(pgmDB) DBName("*Public/DG NET Local")
+
+    DclDiskFile Cust +
+        Type(*Input) +
+        Org(*Indexed) +
+        Prefix(Cust_) +
+        File("Examples/CMastNewL2") +
+        DB(pgmDB) +
+        ImpOpen(*No) 
+
+    DclPrintFile MyPrint +
+        DB (pgmDB) + 
+        File ("Examples/CustList") + 
+        ImpOpen (*No) 
+    
+    DclProp DocumentName Type (*String) 
+    DclProp IsPdf Type (*Boolean) 
+    DclProp OutputDirectory Type (*String) 
+    DclProp OutputFileFullName Type(*String) Access(*Public) 
+    DclProp PrinterName Type (*String) 
+    DclProp VirtualPathToPdf Type(*String) Access(*Public) 
+
+    BegSr OpenData Access (*Private) 
+        Connect PgmDB
+        Open Cust
+
+        MyPrint.Printer = *This.PrinterName
+        If (IsPdf) 
+            MyPrint.PrintToFileName = *This.OutputFileFullName
+        EndIf             
+        Open MyPrint
+    EndSr
+
+    BegSr CloseData Access (*Private) 
+        Close Cust
+        Close MyPrint
+        Disconnect PgmDB
+    EndSr
+
+    BegSr Print Access(*Public) 
+        OpenData()
+        WriteReportFormats()
+        CloseData()
+        // If printing to PDF, pause just a bit
+        // to ensure the PDF file is closed before
+        // returning.
+        If (*This.IsPdf) 
+            Sleep(5000)
+        EndIf 
+    EndSr
+
+    BegSr WriteReportformats Access (*Private) 
+        DclFld StartingfooterSize Type (*Integer4) 
+        DclFld NeedHeader Type (*Boolean) 
+
+        // There are 254 print units in an inch. 
+        DclConst ONE_INCH Value(254)
+
+        StartingfooterSize = MyPrint.FooterSize
+        NeedHeader = *True
+
+        DclFld Counter Type(*Integer4) 
+
+        Read Cust
+        DoWhile (NOT Cust.IsEof)
+            Counter += 1
+            CustomerName = Cust_CMName
+
+            If (NeedHeader) 
+                Write Heading
+                NeedHeader = *False
+            EndIf
+
+            Write Detail
+            
+            // This results in a 1.25 inch footer. 
+            If (MyPrint.FooterSize <= ONE_INCH * 1.25)
+                Write Footer
+                NeedHeader = *True
+                StartingFooterSize = MyPrint.FooterSize
+            Endif 
+
+            // An arbitrary value to limit pages printed
+            // for testing.
+            If Counter = 75 
+                Leave 
+            EndIf
+
+            Read Cust
+        EndDo
+
+        If (StartingfooterSize <> MyPrint.FooterSize) 
+            Write Footer
+        EndIf
+    EndSr
+
+    BegConstructor Access(*Public) 
+        //
+        // Constructor for printing to printer.
+        //
+        DclSrParm PrinterName Type(*String) 
+
+        *This.PrinterName =	PrinterName
+        *This.IsPdf = *False
+    EndConstructor
+
+    BegConstructor Access(*Public) 
+        //
+        // Constructor for printing to PDF.
+        //
+        DclSrParm WebRoot Type(*String) 
+        DclSrParm OutputDirectory Type(*String) 
+        DclSrParm DocumentName Type(*String)
+        DclSrParm PrinterName Type(*String)
+        
+        DclConst ERROR_MESSAGE Value('There isn''t a [{0}] directory in the app root.') 
+
+        *This.PrinterName = PrinterName
+        
+        CheckFileAndPathSeparators(OutputDirectory, DocumentName)
+
+        // Throw exception if output directory provided doesn't exist.             
+        If NOT Directory.Exists(WebRoot + *This.OutputDirectory )
+            Throw *New System.ArgumentException(String.Format(ERROR_MESSAGE, +
+                                                *This.OutputDirectory))
+        EndIf
+
+        // Create PDF file name. 
+        *This.OutputFileFullName = String.Format('{0}{1}\{2}', +              
+                                       WebRoot, +
+                                       *This.OutputDirectory, +
+                                       *This.DocumentName)
+        
+        // Create relative output file name for response.redirect.
+        *This.VirtualPathToPdf = String.Format('/{0}/{1}', + 
+                                     *This.OutputDirectory, +
+                                     *This.DocumentName)
+        *This.IsPdf = *True
+    EndConstructor
+
+    BegSr CheckFileAndPathSeparators
+        DclSrParm OutputDirectory Type(*String) 
+        DclSrParm DocumentName Type(*String) 
+
+        DclConst BACK_SLASH Value('\') 
+        DclConst FORWARD_SLASH Value('/')
+        DclConst LEADING_BACK_SLASH Value('^\\')
+        DclConst TRAILING_BACK_SLASH Value('\\$')
+
+        // Don't assume the slashes or backslashes provided 
+        // are correct! 
+        // Remove leading backslash if present.
+        *This.OutputDirectory = RegEx.Replace(OutputDirectory, + 
+                                   LEADING_BACK_SLASH, String.Empty)
+        // Remove trailing backslash if present.
+        *This.OutputDirectory = RegEx.Replace(OutputDirectory, + 
+                                   TRAILING_BACK_SLASH, String.Empty) 
+        // Swap / slashes for \ slashes if present.
+        *This.OutputDirectory = RegEx.Replace(OutputDirectory, + 
+                                   FORWARD_SLASH, BACK_SLASH)
+        // Remove leading backslash if present.
+        *This.DocumentName = RegEx.Replace(DocumentName, +
+                                LEADING_BACK_SLASH, String.Empty)
+        // Remove trailing backslash if present.
+        *This.DocumentName = RegEx.Replace(DocumentName, +
+                                TRAILING_BACK_SLASH, String.Empty)
+    EndSr
+    
+EndClass
